@@ -14,8 +14,8 @@ export const spotifyClient = {
             const response = await api({
                 method,
                 url,
-                data,
-                params,
+                ...(data && { data }),
+                ...(params && { params }),
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
@@ -32,7 +32,7 @@ export const spotifyClient = {
         }
     },
 
-    get: (url, accessToken, params) => {
+    get: (url, accessToken, params = {}) => {
 
         return spotifyClient.request({
             method: "GET",
