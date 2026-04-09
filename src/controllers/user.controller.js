@@ -81,10 +81,36 @@ export const getCurrentUserTopArtists = async (req, res) => {
 
         const artists = await userServices.getCurrentUserTopArtists(req.accessToken, params)
 
-        console.log(artists)
-
         res.json(artists)
     
+    } catch (error) {
+
+        res.status(error.statusCode || 500).json({ error: error.message })
+    }
+}
+
+export const getCurrentUserRecentlyPlayedTracks = async (req, res) => {
+
+    try {
+
+        const { limit, offset } = req.query
+
+        const params = {}
+
+        if (limit) {
+
+            params.limit = Number(limit)
+        }
+
+        if (offset) {
+
+            params.offset = Number(offset)
+        }
+
+        const recentlyPlayed = await userServices.getCurrentUserRecentlyPlayedTracks(req.accessToken, params)
+
+        res.json(recentlyPlayed)
+
     } catch (error) {
 
         res.status(error.statusCode || 500).json({ error: error.message })
