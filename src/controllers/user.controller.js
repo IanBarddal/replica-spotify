@@ -149,3 +149,36 @@ export const getCurrentUserLikedTracks = async (req, res) => {
         return res.status(error.statusCode || 500).json({ error: error.message })
     }
 }
+
+export const getCurrentUserLikedAlbums = async (req, res) => {
+
+    try {
+
+        const { limit, offset, market } = req.query
+
+        const params = {}
+
+        if (limit) {
+
+            params.limit = Number(limit)
+        }
+
+        if (offset) {
+
+            params.offset = Number(offset)
+        }
+
+        if (market) {
+
+            params.market = String(market)
+        }
+
+        const likedAlbums = await userServices.getCurrentUserLikedAlbums(req.accessToken, params)
+
+        res.json(likedAlbums)
+
+    } catch (error) {
+
+        return res.status(error.statusCode || 500).json({ error: error.message })
+    }
+}
