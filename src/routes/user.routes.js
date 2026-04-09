@@ -13,5 +13,6 @@ router.get("/me/top/artists", allUserServices.getCurrentUserTopArtists)
 router.get("/me/player/recently-played", allUserServices.getCurrentUserRecentlyPlayedTracks)
 router.get("/me/tracks", allUserServices.getCurrentUserLikedTracks)
 router.get("/me/albums", allUserServices.getCurrentUserLikedAlbums)
+router.get("/me/following", allUserServices.getCurrentUserFollowedArtists)
 
 export default router

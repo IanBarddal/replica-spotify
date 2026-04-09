@@ -35,5 +35,10 @@ export const userServices = {
     getCurrentUserLikedAlbums: (accessToken, params = {}) => {
 
         return spotifyClient.get("/me/albums", accessToken, params)
+    },
+
+    getCurrentUserFollowedArtists: (accessToken, params = {}) => {
+
+        return spotifyClient.get("/me/following", accessToken, params={type: "artist"})
     }
 }
