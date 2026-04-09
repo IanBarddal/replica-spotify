@@ -4,8 +4,6 @@ export const handleSpotifyCallback = async (req, res) => {
 
     const code = req.query.code
 
-    console.log(code)
-
     if (!code) {
     
         return res.status(400).send("Code não fornecido pelo Spotify");
