@@ -1,45 +1,14 @@
-import { AppError } from "../utils/appError.js"
-import axios from "axios"
+import { spotifyClient } from "../clients/spotifyClient.js"
 
 export const userServices = {
 
-    getCurrentUser: async (accessToken) => {
+    getCurrentUser: (accessToken, params = {}) => {
 
-        try {
-
-            const response = await axios.get("https://api.spotify.com/v1/me", {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                }
-            })
-
-            return response.data
-
-        } catch (error) {
-
-            console.error("Erro ao buscar usuário: ", error.response?.data || error.message)
-
-            throw new AppError ("Não foi possível retornar dados do usuário.", 401)
-        }
+        return spotifyClient.get("/me", accessToken, params)
     },
 
-    getCurrentUserPlaylists: async (accessToken) => {
+    getCurrentUserPlaylists: (accessToken, params = {}) => {
 
-        try {
-
-            const response = await axios.get("https://api.spotify.com/v1/me/playlists", {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`
-                }
-            })
-
-            return response.data
-
-        } catch (error) {
-
-            console.error("Erro ao buscar playlist: ", error.response?.data || error.message)
-
-            throw new AppError ("Não foi possível retornar playlists do usuário", error.response?.status || 500)
-        }
+        return spotifyClient.get("/me/playlists", accessToken, params)
     }
 }

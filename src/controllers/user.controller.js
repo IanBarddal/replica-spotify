@@ -9,7 +9,21 @@ export const getCurrentUserPlaylists = async (req, res) => {
 
     try {
 
-        const playlists = await userServices.getCurrentUserPlaylists(req.accessToken)
+        const { limit, offset } = req.query
+
+        const params = {}
+
+        if (limit) {
+
+            params.limit = Number(limit)
+        }
+
+        if (offset) {
+
+            params.offset = Number(offset)
+        }
+
+        const playlists = await userServices.getCurrentUserPlaylists(req.accessToken, params)
 
         res.json(playlists)
 
@@ -17,5 +31,4 @@ export const getCurrentUserPlaylists = async (req, res) => {
 
         res.status(error.statusCode || 500).json({ error: error.message })
     }
-    
 }
