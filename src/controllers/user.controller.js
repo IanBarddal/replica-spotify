@@ -37,7 +37,7 @@ export const getCurrentUserTopTracks = async (req, res) => {
 
     try {
 
-        const { limit, offset } = req.query
+        const { limit, offset, timeRange } = req.query
 
         const params = {}
 
@@ -49,6 +49,11 @@ export const getCurrentUserTopTracks = async (req, res) => {
         if (offset) {
 
             params.offset = Number(offset)
+        }
+
+        if (timeRange) {
+
+            params.timeRange = String(timeRange)
         }
 
         const tracks = await userServices.getCurrentUserTopTracks(req.accessToken, params)
@@ -65,7 +70,7 @@ export const getCurrentUserTopArtists = async (req, res) => {
 
     try {
 
-        const { limit, offset } = req.query
+        const { limit, offset, timeRange } = req.query
 
         const params = {}
 
@@ -77,6 +82,11 @@ export const getCurrentUserTopArtists = async (req, res) => {
         if (offset) {
 
             params.offset = Number(offset)
+        }
+
+        if (timeRange) {
+
+            params.timeRange = String(timeRange)
         }
 
         const artists = await userServices.getCurrentUserTopArtists(req.accessToken, params)
@@ -93,7 +103,7 @@ export const getCurrentUserRecentlyPlayedTracks = async (req, res) => {
 
     try {
 
-        const { limit, offset } = req.query
+        const { limit, after, before } = req.query
 
         const params = {}
 
@@ -102,9 +112,14 @@ export const getCurrentUserRecentlyPlayedTracks = async (req, res) => {
             params.limit = Number(limit)
         }
 
-        if (offset) {
+        if (after) {
 
-            params.offset = Number(offset)
+            params.after = Number(after)
+        }
+
+        if (before) {
+
+            params.before = Number(before)
         }
 
         const recentlyPlayed = await userServices.getCurrentUserRecentlyPlayedTracks(req.accessToken, params)
