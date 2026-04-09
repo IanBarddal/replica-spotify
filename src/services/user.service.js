@@ -21,5 +21,25 @@ export const userServices = {
 
             throw new AppError ("Não foi possível retornar dados do usuário.", 401)
         }
+    },
+
+    getCurrentUserPlaylists: async (accessToken) => {
+
+        try {
+
+            const response = await axios.get("https://api.spotify.com/v1/me/playlists", {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            })
+
+            return response.data
+
+        } catch (error) {
+
+            console.error("Erro ao buscar playlist: ", error.response?.data || error.message)
+
+            throw new AppError ("Não foi possível retornar playlists do usuário", error.response?.status || 500)
+        }
     }
 }

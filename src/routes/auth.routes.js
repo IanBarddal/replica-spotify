@@ -5,6 +5,6 @@ const router = Router()
 
 router.get("/login", login)
 router.get("/callback", handleSpotifyCallback)
-router.post("/refresh_token", handleRefreshAccessToken)
+router.post("/token/refresh", handleRefreshAccessToken)
 
 export default router
