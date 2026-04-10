@@ -44,6 +44,6 @@ export const userServices = {
 
     getCurrentUserPlayingNowTrack: (accessToken, params = {}) => {
 
-        
+        return spotifyClient.get("/me/player", accessToken, params)
     }
 }

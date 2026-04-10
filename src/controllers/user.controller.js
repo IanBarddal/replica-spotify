@@ -225,3 +225,31 @@ export const getCurrentUserFollowedArtists = async (req, res) => {
         return res.status(error.statusCode || 500).json({ error: error.message })
     }
 }
+
+export const getCurrentUserPlayingNowTrack = async (req, res) => {
+
+    try {
+
+        const { market, additionalTypes } = req.query
+
+        const params = {}
+
+        if (market) {
+
+            params.market = String(market)
+        }
+
+        if (additionalTypes) {
+
+            params.additionalTypes = String(market)
+        }
+
+        const playingNowTrack = await userServices.getCurrentUserPlayingNowTrack(req.accessToken, params)
+
+        res.json(playingNowTrack)
+
+    } catch (error) {
+
+        return res.status(error.statusCode || 500).json({ error: error.message })
+    }
+}
