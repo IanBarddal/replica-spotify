@@ -244,9 +244,37 @@ export const getCurrentUserPlaybackState = async (req, res) => {
             params.additionalTypes = String(market)
         }
 
-        const playingNowTrack = await userServices.getCurrentUserPlayingNowTrack(req.accessToken, params)
+        const playbackState = await userServices.getCurrentUserPlayingNowTrack(req.accessToken, params)
 
-        res.json(playingNowTrack)
+        res.json(playbackState)
+
+    } catch (error) {
+
+        return res.status(error.statusCode || 500).json({ error: error.message })
+    }
+}
+
+export const getCurrentUserCurrentlyPlayingTrack = async (req, res) => {
+
+    try {
+
+        const { market, additionalTypes } = req.query
+
+        const params = {}
+
+        if (market) {
+
+            params.market = String(market)
+        }
+
+        if (additionalTypes) {
+
+            params.additionalTypes = String(additionalTypes)
+        }
+
+        const currentTrack = await userServices.getCurrentUserCurrentlyPlayingTrack(req.accessToken, params)
+
+        res.json(currentTrack)
 
     } catch (error) {
 

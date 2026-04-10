@@ -26,7 +26,7 @@ export const authServices = {
 
     buildSpotifyAuthURL: () => {
 
-        const scope = "user-read-email user-read-private playlist-read-private user-top-read user-read-recently-played user-library-read user-follow-read user-read-playback-state"
+        const scope = "user-read-email user-read-private playlist-read-private user-top-read user-read-recently-played user-library-read user-follow-read user-read-playback-state user-read-currently-playing"
 
         const queryParams = querystring.stringify({
             response_type: "code",

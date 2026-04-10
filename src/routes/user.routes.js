@@ -15,5 +15,6 @@ router.get("/me/tracks", allUserServices.getCurrentUserLikedTracks)
 router.get("/me/albums", allUserServices.getCurrentUserLikedAlbums)
 router.get("/me/following", allUserServices.getCurrentUserFollowedArtists)
 router.get("/me/player", allUserServices.getCurrentUserPlaybackState)
+router.get("/me/player/currently-playing", allUserServices.getCurrentUserCurrentlyPlayingTrack)
 
 export default router
