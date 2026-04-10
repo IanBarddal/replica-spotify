@@ -226,7 +226,7 @@ export const getCurrentUserFollowedArtists = async (req, res) => {
     }
 }
 
-export const getCurrentUserPlayingNowTrack = async (req, res) => {
+export const getCurrentUserPlaybackState = async (req, res) => {
 
     try {
 
