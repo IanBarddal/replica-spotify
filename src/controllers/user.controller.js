@@ -290,9 +290,16 @@ export const currentUserPlayerPlay = async (req, res) => {
     res.status(204).send()
 }
 
-export const currentUserPausePlay = async (req, res) => {
+export const currentUserPlayerPause = async (req, res) => {
 
-    await userServices.currentUserPausePlay(req.accessToken)
+    await userServices.currentUserPlayerPause(req.accessToken)
+
+    res.status(204).send()
+}
+
+export const currentUserPlayerPreviousTrack = async (req, res) => {
+
+    await userServices.currentUserPlayerPreviousTrack(req.accessToken)
 
     res.status(204).send()
 }
