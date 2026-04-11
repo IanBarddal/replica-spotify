@@ -17,5 +17,4 @@ router.put("/me/player/repeat", allPlayerControllers.playerRepeatMode)
 router.post("/me/player/previous", allPlayerControllers.playerPreviousTrack)
 router.post("/me/player/next", allPlayerControllers.playerNextTrack)
 
-
 export default router
