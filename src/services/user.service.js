@@ -70,5 +70,10 @@ export const userServices = {
     currentUserPlayerNextTrack: (accessToken) => {
 
         return spotifyClient.post("/me/player/next", accessToken)
+    },
+
+    currentUserSetVolume: (accessToken, volume) => {
+
+        return spotifyClient.put(`/me/player/volume?volume_percent=${volume}`, accessToken)
     }
 }
