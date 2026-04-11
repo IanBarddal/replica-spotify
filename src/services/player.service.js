@@ -35,5 +35,10 @@ export const playerServices = {
     playerShuffle: (accessToken, state) => {
 
         return spotifyClient.put(`/me/player/shuffle?state=${state}`, accessToken)
+    },
+
+    playerRepeatMode: (accessToken, state) => {
+
+        return spotifyClient.put(`/me/player/repeat?state=${state}`, accessToken)
     }
 }

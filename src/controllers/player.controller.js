@@ -101,3 +101,12 @@ export const playerShuffle = async (req, res) => {
 
     res.status(204).send()
 }
+
+export const playerRepeatMode = async (req, res) => {
+
+    const { state } = req.query
+
+    await playerServices.playerRepeatMode(req.accessToken, state)
+
+    res.status(204).send()
+}
