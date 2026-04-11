@@ -1,4 +1,5 @@
 import { userServices } from "../services/user.service.js"
+import { AppError } from "../utils/appError.js";
 
 export const getCurrentUser = (req, res) => {
 
@@ -280,4 +281,13 @@ export const getCurrentUserCurrentlyPlayingTrack = async (req, res) => {
 
         return res.status(error.statusCode || 500).json({ error: error.message })
     }
+}
+
+export const currentUserPlayerPlay = async (req, res) => {
+
+    await userServices.currentUserPlayerPlay(req.accessToken, {
+        "position_ms": 0
+    })
+
+    res.status(204).send()
 }
