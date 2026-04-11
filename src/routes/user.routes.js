@@ -17,5 +17,6 @@ router.get("/me/following", allUserServices.getCurrentUserFollowedArtists)
 router.get("/me/player", allUserServices.getCurrentUserPlaybackState)
 router.get("/me/player/currently-playing", allUserServices.getCurrentUserCurrentlyPlayingTrack)
 router.put("/me/player/play", allUserServices.currentUserPlayerPlay)
+router.put("/me/player/pause", allUserServices.currentUserPausePlay)
 
 export default router

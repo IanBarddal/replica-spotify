@@ -52,8 +52,13 @@ export const userServices = {
         return spotifyClient.get("/me/player/currently-playing", accessToken, params)
     },
 
-    currentUserPlayerPlay: (accessToken, options) => {
+    currentUserPlayerPlay: (accessToken) => {
 
-        return spotifyClient.put("/me/player/play", accessToken, options)
+        return spotifyClient.put("/me/player/play", accessToken)
+    },
+
+    currentUserPausePlay: (accessToken) => {
+
+        return spotifyClient.put("/me/player/pause", accessToken)
     }
 }

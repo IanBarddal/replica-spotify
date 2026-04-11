@@ -285,9 +285,14 @@ export const getCurrentUserCurrentlyPlayingTrack = async (req, res) => {
 
 export const currentUserPlayerPlay = async (req, res) => {
 
-    await userServices.currentUserPlayerPlay(req.accessToken, {
-        "position_ms": 0
-    })
+    await userServices.currentUserPlayerPlay(req.accessToken)
+
+    res.status(204).send()
+}
+
+export const currentUserPausePlay = async (req, res) => {
+
+    await userServices.currentUserPausePlay(req.accessToken)
 
     res.status(204).send()
 }
