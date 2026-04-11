@@ -245,7 +245,7 @@ export const getCurrentUserPlaybackState = async (req, res) => {
             params.additionalTypes = String(market)
         }
 
-        const playbackState = await userServices.getCurrentUserPlayingNowTrack(req.accessToken, params)
+        const playbackState = await userServices.getCurrentUserPlaybackState(req.accessToken, params)
 
         res.json(playbackState)
 
@@ -300,6 +300,13 @@ export const currentUserPlayerPause = async (req, res) => {
 export const currentUserPlayerPreviousTrack = async (req, res) => {
 
     await userServices.currentUserPlayerPreviousTrack(req.accessToken)
+
+    res.status(204).send()
+}
+
+export const currentUserPlayerNextTrack = async (req, res) => {
+
+    await userServices.currentUserPlayerNextTrack(req.accessToken)
 
     res.status(204).send()
 }

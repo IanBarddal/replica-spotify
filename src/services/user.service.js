@@ -42,12 +42,12 @@ export const userServices = {
         return spotifyClient.get("/me/following", accessToken, {...params, type: "artist"})
     },
 
-    getCurrentUserPlaybackState: (accessToken, params = {}) => {
+    getCurrentUserPlaybackState: (accessToken, params = {}) => { // Mostra o estado atual do player
 
         return spotifyClient.get("/me/player", accessToken, params)
     },
 
-    getCurrentUserCurrentlyPlayingTrack: (accessToken, params = {}) => {
+    getCurrentUserCurrentlyPlayingTrack: (accessToken, params = {}) => { // Mostra a faixa que está tocando no momento
 
         return spotifyClient.get("/me/player/currently-playing", accessToken, params)
     },
@@ -65,5 +65,10 @@ export const userServices = {
     currentUserPlayerPreviousTrack: (accessToken) => {
 
         return spotifyClient.post("/me/player/previous", accessToken)
+    },
+
+    currentUserPlayerNextTrack: (accessToken) => {
+
+        return spotifyClient.post("/me/player/next", accessToken)
     }
 }

@@ -19,5 +19,6 @@ router.get("/me/player/currently-playing", allUserServices.getCurrentUserCurrent
 router.put("/me/player/play", allUserServices.currentUserPlayerPlay)
 router.put("/me/player/pause", allUserServices.currentUserPlayerPause)
 router.post("/me/player/previous", allUserServices.currentUserPlayerPreviousTrack)
+router.post("/me/player/next", allUserServices.currentUserPlayerNextTrack)
 
 export default router
