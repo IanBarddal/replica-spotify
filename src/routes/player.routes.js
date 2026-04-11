@@ -1,21 +1,21 @@
 import { Router } from "express"
 import { authMiddleware } from "../middlewares/authMiddleware.js"
-import * as allPlayerServices from "../controllers/player.controller.js"
+import * as allPlayerControllers from "../controllers/player.controller.js"
 
 const router = Router()
 
 router.use(authMiddleware)
 
-router.get("/me/player", allPlayerServices.getPlayerPlaybackState)
-router.get("/me/player/currently-playing", allPlayerServices.getCurrentlyPlayingTrack)
-router.get("/me/player/devices", allPlayerServices.getPlayerDevices)
-router.put("/me/player/play", allPlayerServices.playerPlay)
-router.put("/me/player/pause", allPlayerServices.playerPause)
-router.put("/me/player/volume", allPlayerServices.playerSetVolume)
-router.put("/me/player/shuffle", allPlayerServices.playerShuffle)
-router.put("/me/player/repeat", allPlayerServices.playerRepeatMode)
-router.post("/me/player/previous", allPlayerServices.playerPreviousTrack)
-router.post("/me/player/next", allPlayerServices.playerNextTrack)
+router.get("/me/player", allPlayerControllers.getPlayerPlaybackState)
+router.get("/me/player/currently-playing", allPlayerControllers.getCurrentlyPlayingTrack)
+router.get("/me/player/devices", allPlayerControllers.getPlayerDevices)
+router.put("/me/player/play", allPlayerControllers.playerPlay)
+router.put("/me/player/pause", allPlayerControllers.playerPause)
+router.put("/me/player/volume", allPlayerControllers.playerSetVolume)
+router.put("/me/player/shuffle", allPlayerControllers.playerShuffle)
+router.put("/me/player/repeat", allPlayerControllers.playerRepeatMode)
+router.post("/me/player/previous", allPlayerControllers.playerPreviousTrack)
+router.post("/me/player/next", allPlayerControllers.playerNextTrack)
 
 
 export default router
