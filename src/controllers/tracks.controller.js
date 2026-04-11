@@ -32,14 +32,45 @@ export const tracksSearch = async (req, res) => {
         throw new AppError ("Digite algo para buscar", 400)
     }
 
-    try {
+    const result = await tracksServices.tracksSearch(req.accessToken, query)
 
-        const result = await tracksServices.tracksSearch(req.accessToken, query)
+    const resultData = result.tracks.items.map(track => ({
 
-        res.json(result)
+        id: track.id,
+        album: track.album.name,
+        name: track.name,
+        artist: track.artists[0].name,
+        image: track.album.images[0].url
+    }))
 
-    } catch (error) {
+    res.json(resultData)
+}
 
-        return res.status(error.statusCode || 500).json({ error: error.message })
+export const getTrackDetails = async (req, res) => {
+
+    const { id } = req.params
+
+    const { market } = req.query
+
+    const params = {}
+
+    if (!id) {
+
+        throw new AppError ("ID da faixa é obrigatório", 400)
     }
+
+    if (market) {
+
+        params.market = String(market)
+    }
+        
+    const result = await tracksServices.getTrackDetails(req.accessToken, id, params)
+
+    res.json( {
+        id: result.id,
+        album: result.album.name,
+        name: result.name,
+        artist: result.artists[0].name,
+        image: result.album.images[0].url
+    })
 }
