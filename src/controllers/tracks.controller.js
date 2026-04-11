@@ -3,7 +3,29 @@ import { AppError } from "../utils/appError.js"
 
 export const tracksSearch = async (req, res) => {
 
-    const { q: query } = req.query
+    const { q: query, limit, offset, market, includeExternal } = req.query
+
+    const params = {}
+    
+    if (limit) {
+
+        params.limit = Number(limit)
+    }
+
+    if (offset) {
+
+        params.offset = Number(offset)
+    }
+
+    if (market) {
+
+        params.market = String(market)
+    }
+
+    if (includeExternal) {
+
+        params.includeExternal = String(includeExternal)
+    }
 
     if (!query) {
 

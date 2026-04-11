@@ -2,8 +2,8 @@ import { spotifyClient } from "../clients/spotifyClient.js"
 
 export const tracksServices = {
 
-    tracksSearch: (accessToken, query) => {
+    tracksSearch: (accessToken, query, params = {}) => {
 
-        return spotifyClient.get(`/search?q=${query}&type=track`, accessToken)
+        return spotifyClient.get(`/search?q=${query}&type=track`, accessToken, params)
     }
 }
