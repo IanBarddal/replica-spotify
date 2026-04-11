@@ -7,6 +7,7 @@ const router = Router()
 router.use(authMiddleware)
 
 router.get("/me/player", allPlayerServices.getPlayerPlaybackState)
+router.get("/me/player/currently-playing", allPlayerServices.getCurrentlyPlayingTrack)
 router.put("/me/player/play", allPlayerServices.playerPlay)
 router.put("/me/player/pause", allPlayerServices.playerPause)
 router.put("/me/player/volume", allPlayerServices.playerSetVolume)
@@ -14,5 +15,6 @@ router.put("/me/player/shuffle", allPlayerServices.playerShuffle)
 router.put("/me/player/repeat", allPlayerServices.playerRepeatMode)
 router.post("/me/player/previous", allPlayerServices.playerPreviousTrack)
 router.post("/me/player/next", allPlayerServices.playerNextTrack)
+
 
 export default router

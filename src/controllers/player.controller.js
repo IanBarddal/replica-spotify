@@ -110,3 +110,31 @@ export const playerRepeatMode = async (req, res) => {
 
     res.status(204).send()
 }
+
+export const getCurrentlyPlayingTrack = async (req, res) => {
+
+    try {
+
+        const { market, additionalTypes } = req.query
+
+        const params = {}
+
+        if (market) {
+
+            params.market = String(market)
+        }
+
+        if (additionalTypes) {
+
+            params.additionalTypes = String(additionalTypes)
+        }
+
+        const currentTrack = await playerServices.getCurrentlyPlayingTrack(req.accessToken, params)
+
+        res.json(currentTrack)
+
+    } catch (error) {
+
+        return res.status(error.statusCode || 500).json({ error: error.message })
+    }
+}

@@ -2,6 +2,11 @@ import { spotifyClient } from "../clients/spotifyClient.js"
 
 export const playerServices = {
 
+    getCurrentlyPlayingTrack: (accessToken, params = {}) => { // Mostra a faixa sendo tocada no momento
+
+        return spotifyClient.get("/me/player/currently-playing", accessToken, params)
+    },
+
     getPlayerPlaybackState: (accessToken, params = {}) => { // Mostra o estado atual do player
 
         return spotifyClient.get("/me/player", accessToken, params)
@@ -40,5 +45,5 @@ export const playerServices = {
     playerRepeatMode: (accessToken, state) => {
 
         return spotifyClient.put(`/me/player/repeat?state=${state}`, accessToken)
-    }
+    },
 }

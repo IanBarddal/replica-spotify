@@ -40,10 +40,5 @@ export const userServices = {
     getCurrentUserFollowedArtists: (accessToken, params = {}) => {
 
         return spotifyClient.get("/me/following", accessToken, {...params, type: "artist"})
-    },
-
-    getCurrentUserCurrentlyPlayingTrack: (accessToken, params = {}) => { // Mostra a faixa que está tocando no momento
-
-        return spotifyClient.get("/me/player/currently-playing", accessToken, params)
     }
 }
