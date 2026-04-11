@@ -92,3 +92,12 @@ export const playerSetVolume = async (req, res) => {
         throw error
     }
 }
+
+export const playerShuffle = async (req, res) => {
+
+    const { state } = req.query
+
+    await playerServices.playerShuffle(req.accessToken, state)
+
+    res.status(204).send()
+}

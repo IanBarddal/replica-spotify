@@ -32,5 +32,8 @@ export const playerServices = {
         return spotifyClient.put(`/me/player/volume?volume_percent=${volume}`, accessToken)
     },
 
-    // Continuar daqui
+    playerShuffle: (accessToken, state) => {
+
+        return spotifyClient.put(`/me/player/shuffle?state=${state}`, accessToken)
+    }
 }
