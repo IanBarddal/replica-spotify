@@ -6,6 +6,7 @@ const router = Router()
 
 router.use(authMiddleware)
 
+router.get("/me/tracks", allTracksControllers.getCurrentUserLikedTracks)
 router.get("/search", allTracksControllers.tracksSearch)
 router.get("/:id", allTracksControllers.getTrackDetails)
 

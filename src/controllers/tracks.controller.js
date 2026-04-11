@@ -74,3 +74,36 @@ export const getTrackDetails = async (req, res) => {
         image: result.album.images[0].url
     })
 }
+
+export const getCurrentUserLikedTracks = async (req, res) => {
+
+    try {
+
+        const { market, limit, offset } = req.query
+
+        const params = {}
+
+        if (limit) {
+
+            params.limit = Number(limit)
+        }
+
+        if (offset) {
+
+            params.offset = Number(offset)
+        }
+
+        if (market) {
+
+            params.market = String(market)
+        }
+
+        const likedTracks = await tracksServices.getCurrentUserLikedTracks(req.accessToken, params)
+
+        res.json(likedTracks)
+
+    } catch (error) {
+
+        return res.status(error.statusCode || 500).json({ error: error.message })
+    }
+}

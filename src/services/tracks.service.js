@@ -10,5 +10,10 @@ export const tracksServices = {
     getTrackDetails: (accessToken, id, params = {}) => {
 
         return spotifyClient.get(`/tracks/${id}`, accessToken, params)
-    }
+    },
+
+    getCurrentUserLikedTracks: (accessToken, params = {}) => {
+
+        return spotifyClient.get("me/tracks", accessToken, params)
+    },
 }

@@ -29,6 +29,39 @@ export const getPlayerPlaybackState = async (req, res) => {
     }
 }
 
+export const getCurrentUserRecentlyPlayedTracks = async (req, res) => {
+
+    try {
+
+        const { limit, after, before } = req.query
+
+        const params = {}
+
+        if (limit) {
+
+            params.limit = Number(limit)
+        }
+
+        if (after) {
+
+            params.after = Number(after)
+        }
+
+        if (before) {
+
+            params.before = Number(before)
+        }
+
+        const recentlyPlayed = await playerServices.getCurrentUserRecentlyPlayedTracks(req.accessToken, params)
+
+        res.json(recentlyPlayed)
+
+    } catch (error) {
+
+        res.status(error.statusCode || 500).json({ error: error.message })
+    }
+}
+
 export const playerPlay = async (req, res) => {
 
     await playerServices.playerPlay(req.accessToken)
