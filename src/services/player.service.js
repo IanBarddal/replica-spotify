@@ -12,6 +12,11 @@ export const playerServices = {
         return spotifyClient.get("/me/player", accessToken, params)
     },
 
+    getPlayerDevices: (accessToken) => {
+
+        return spotifyClient.get("/me/player/devices", accessToken)
+    },
+
     playerPlay: (accessToken) => {
 
         return spotifyClient.put("/me/player/play", accessToken)
@@ -45,5 +50,5 @@ export const playerServices = {
     playerRepeatMode: (accessToken, state) => {
 
         return spotifyClient.put(`/me/player/repeat?state=${state}`, accessToken)
-    },
+    }
 }
