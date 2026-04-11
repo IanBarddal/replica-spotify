@@ -14,12 +14,6 @@ router.get("/me/player/recently-played", allUserServices.getCurrentUserRecentlyP
 router.get("/me/tracks", allUserServices.getCurrentUserLikedTracks)
 router.get("/me/albums", allUserServices.getCurrentUserLikedAlbums)
 router.get("/me/following", allUserServices.getCurrentUserFollowedArtists)
-router.get("/me/player", allUserServices.getCurrentUserPlaybackState)
 router.get("/me/player/currently-playing", allUserServices.getCurrentUserCurrentlyPlayingTrack)
-router.put("/me/player/play", allUserServices.currentUserPlayerPlay)
-router.put("/me/player/pause", allUserServices.currentUserPlayerPause)
-router.put("/me/player/volume", allUserServices.currentUserSetVolume)
-router.post("/me/player/previous", allUserServices.currentUserPlayerPreviousTrack)
-router.post("/me/player/next", allUserServices.currentUserPlayerNextTrack)
 
 export default router

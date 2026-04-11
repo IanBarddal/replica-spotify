@@ -1,5 +1,4 @@
 import { userServices } from "../services/user.service.js"
-import { AppError } from "../utils/appError.js";
 
 export const getCurrentUser = (req, res) => {
 
@@ -227,34 +226,6 @@ export const getCurrentUserFollowedArtists = async (req, res) => {
     }
 }
 
-export const getCurrentUserPlaybackState = async (req, res) => {
-
-    try {
-
-        const { market, additionalTypes } = req.query
-
-        const params = {}
-
-        if (market) {
-
-            params.market = String(market)
-        }
-
-        if (additionalTypes) {
-
-            params.additionalTypes = String(market)
-        }
-
-        const playbackState = await userServices.getCurrentUserPlaybackState(req.accessToken, params)
-
-        res.json(playbackState)
-
-    } catch (error) {
-
-        return res.status(error.statusCode || 500).json({ error: error.message })
-    }
-}
-
 export const getCurrentUserCurrentlyPlayingTrack = async (req, res) => {
 
     try {
@@ -280,69 +251,5 @@ export const getCurrentUserCurrentlyPlayingTrack = async (req, res) => {
     } catch (error) {
 
         return res.status(error.statusCode || 500).json({ error: error.message })
-    }
-}
-
-export const currentUserPlayerPlay = async (req, res) => {
-
-    await userServices.currentUserPlayerPlay(req.accessToken)
-
-    res.status(204).send()
-}
-
-export const currentUserPlayerPause = async (req, res) => {
-
-    await userServices.currentUserPlayerPause(req.accessToken)
-
-    res.status(204).send()
-}
-
-export const currentUserPlayerPreviousTrack = async (req, res) => {
-
-    await userServices.currentUserPlayerPreviousTrack(req.accessToken)
-
-    res.status(204).send()
-}
-
-export const currentUserPlayerNextTrack = async (req, res) => {
-
-    await userServices.currentUserPlayerNextTrack(req.accessToken)
-
-    res.status(204).send()
-}
-
-export const currentUserSetVolume = async (req, res) => {
-
-    const { volume_percent } = req.query
-
-    const volume = Number(volume_percent)
-
-    if (isNaN(volume)) {
-        throw new AppError("volume deve ser um número", 400)
-    }
-
-    if (volume < 0 || volume > 100) {
-        throw new AppError("volume deve estar entre 0 e 100", 400)
-    }
-
-    try {
-
-        await userServices.currentUserSetVolume(req.accessToken, volume)
-
-        res.status(204).send()
-    
-    } catch (error) {
-
-        if (error.status === 403) {
-
-            throw new AppError ("Você não tem permissão para mexer no volume", 403)
-        }
-
-        if (error.message.includes("Cannot control device volume")) {
-
-            throw new AppError ("Este dispositivo não permite alterar o volume", 400)
-        }
-
-        throw error
     }
 }

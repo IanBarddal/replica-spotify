@@ -42,38 +42,8 @@ export const userServices = {
         return spotifyClient.get("/me/following", accessToken, {...params, type: "artist"})
     },
 
-    getCurrentUserPlaybackState: (accessToken, params = {}) => { // Mostra o estado atual do player
-
-        return spotifyClient.get("/me/player", accessToken, params)
-    },
-
     getCurrentUserCurrentlyPlayingTrack: (accessToken, params = {}) => { // Mostra a faixa que está tocando no momento
 
         return spotifyClient.get("/me/player/currently-playing", accessToken, params)
-    },
-
-    currentUserPlayerPlay: (accessToken) => {
-
-        return spotifyClient.put("/me/player/play", accessToken)
-    },
-
-    currentUserPlayerPause: (accessToken) => {
-
-        return spotifyClient.put("/me/player/pause", accessToken)
-    },
-
-    currentUserPlayerPreviousTrack: (accessToken) => {
-
-        return spotifyClient.post("/me/player/previous", accessToken)
-    },
-
-    currentUserPlayerNextTrack: (accessToken) => {
-
-        return spotifyClient.post("/me/player/next", accessToken)
-    },
-
-    currentUserSetVolume: (accessToken, volume) => {
-
-        return spotifyClient.put(`/me/player/volume?volume_percent=${volume}`, accessToken)
     }
 }
