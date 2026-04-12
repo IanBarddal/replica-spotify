@@ -14,6 +14,11 @@ export const albumServices = {
         return spotifyClient.get(`albums/${id}/tracks`, accessToken, params)
     },
 
+    getCurrentUserLikedAlbums: (accessToken, params = {}) => {
+
+        return spotifyClient.get("/me/albums", accessToken, params)
+    },
+
     searchAlbums: (accessToken, query, params = {}) => {
 
         console.log("SEARCH OK")
