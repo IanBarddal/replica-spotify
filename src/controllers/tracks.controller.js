@@ -34,7 +34,7 @@ export const tracksSearch = async (req, res) => {
 
     try {
 
-        const result = await tracksServices.tracksSearch(req.accessToken, query)
+        const result = await tracksServices.tracksSearch(req.accessToken, query, params)
 
         const resultData = result.tracks.items.map(track => ({
 

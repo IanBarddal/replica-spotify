@@ -4,7 +4,7 @@ export const tracksServices = {
 
     tracksSearch: (accessToken, query, params = {}) => {
 
-        return spotifyClient.get(`/search?q=${query}&type=track`, accessToken, params)
+        return spotifyClient.get(`/search`, accessToken, {q: query, type: "track", ...params})
     },
 
     getTrackDetails: (accessToken, id, params = {}) => {
