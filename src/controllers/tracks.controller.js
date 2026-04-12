@@ -32,18 +32,25 @@ export const tracksSearch = async (req, res) => {
         throw new AppError ("Digite algo para buscar", 400)
     }
 
-    const result = await tracksServices.tracksSearch(req.accessToken, query)
+    try {
 
-    const resultData = result.tracks.items.map(track => ({
+        const result = await tracksServices.tracksSearch(req.accessToken, query)
 
-        id: track.id,
-        album: track.album.name,
-        name: track.name,
-        artist: track.artists[0].name,
-        image: track.album.images[0].url
-    }))
+        const resultData = result.tracks.items.map(track => ({
 
-    res.json(resultData)
+            id: track.id,
+            album: track.album.name,
+            name: track.name,
+            artist: track.artists[0].name,
+            image: track.album.images[0].url
+        }))
+
+        res.json(resultData)
+
+    } catch (error) {
+
+        res.status(error.statusCode || 500).json({ error: error.message })
+    }
 }
 
 export const getTrackDetails = async (req, res) => {
@@ -64,39 +71,46 @@ export const getTrackDetails = async (req, res) => {
         params.market = String(market)
     }
         
-    const result = await tracksServices.getTrackDetails(req.accessToken, id, params)
+    try {
 
-    res.json( {
-        id: result.id,
-        album: result.album.name,
-        name: result.name,
-        artist: result.artists[0].name,
-        image: result.album.images[0].url
-    })
+        const result = await tracksServices.getTrackDetails(req.accessToken, id, params)
+
+        res.json( {
+            id: result.id,
+            album: result.album.name,
+            name: result.name,
+            artist: result.artists[0].name,
+            image: result.album.images[0].url
+        })
+
+    } catch (error) {
+
+        res.status(error.statusCode || 500).json({ error: error.message })
+    }
 }
 
 export const getCurrentUserLikedTracks = async (req, res) => {
 
+    const { market, limit, offset } = req.query
+
+    const params = {}
+
+    if (limit) {
+
+        params.limit = Number(limit)
+    }
+
+    if (offset) {
+
+        params.offset = Number(offset)
+    }
+
+    if (market) {
+
+        params.market = String(market)
+    }
+
     try {
-
-        const { market, limit, offset } = req.query
-
-        const params = {}
-
-        if (limit) {
-
-            params.limit = Number(limit)
-        }
-
-        if (offset) {
-
-            params.offset = Number(offset)
-        }
-
-        if (market) {
-
-            params.market = String(market)
-        }
 
         const likedTracks = await tracksServices.getCurrentUserLikedTracks(req.accessToken, params)
 
