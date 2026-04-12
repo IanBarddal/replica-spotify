@@ -7,5 +7,6 @@ const router = Router()
 router.use(authMiddleware)
 
 router.get("/:id", allAlbumControllers.getAlbumDetails)
+router.get("/:id/tracks", allAlbumControllers.getAlbumTracks)
 
 export default router

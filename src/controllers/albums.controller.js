@@ -28,8 +28,13 @@ export const getAlbumDetails = async (req, res) => {
             name: result.name,
             release_date: result.release_date,
             artist: result.artists[0].name,
-            tracks: result.tracks.items.map(track => track.name)
-        })
+            tracks: result.tracks.items.map(track => ({
+                id: track.id,
+                name: track.name,
+                track_number: track.track_number,
+                duration_ms: track.duration_ms
+            }))
+})
 
     } catch (error) {
 
@@ -37,3 +42,47 @@ export const getAlbumDetails = async (req, res) => {
     }
 }
 
+export const getAlbumTracks = async (req, res) => {
+
+    const { id } = req.params
+
+    const { market, limit, offset } = req.query
+
+    const params = {}
+
+    if (!id) {
+
+        throw new AppError("ID do álbum é obrigatório", 400)
+    }
+
+    if (market) {
+
+        params.market = String(market)
+    }
+
+    if (limit) {
+
+        params.limit = Number(limit)
+    }
+
+    if (offset) {
+
+        params.offset = Number(offset)
+    }
+
+    try {
+
+        const result = await albumServices.getAlbumTracks(req.accessToken, id, params)
+
+        res.json(result.items.map(track => ({
+            id: track.id,
+            track_number: track.track_number,
+            name: track.name,
+            duration_ms: track.duration_ms
+        })))
+
+    } catch (error) {
+
+        res.status(error.statusCode || 500).json({ error: error.message })
+    }
+}
