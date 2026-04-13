@@ -94,25 +94,35 @@ export const changePlaylistDetails = async (req, res) => {
 
     const { id } = req.params
 
-    const { name, description, public: isPublic } = req.body
-
-    // CONTINUAR DEPOIS DE FAZER O ENDPOINT GET PLAYLIST
-
     if (!id) {
 
         throw new AppError ("ID da playlist é obrigatório.", 400)
     }
 
+    const { name, description, public: isPublic } = req.body
+
+    const data = {}
+
     if (name === undefined) {
 
-        
+        data.name = name
+    }
+
+    if (description === undefined) {
+
+        data.description = description
+    }
+
+    if (isPublic === undefined) {
+
+        data.public = isPublic
     }
 
     try {
 
-        await playlistServices.changePlaylistDetails(req.accessToken, id, data)
+        await playlistServices.changePlaylistDetails(req.accessToken, id, {name, description, public: isPublic})
 
-        res.status(204).send({ message: "Playlist atualizada com sucesso" })
+        res.status(204).send()
 
     } catch (error) {
 
