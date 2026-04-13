@@ -5,6 +5,7 @@ import userRoutes from "./routes/user.routes.js"
 import playerRoutes from './routes/player.routes.js'
 import trackRoutes from "./routes/tracks.routes.js"
 import albumRoutes from "./routes/albums.routes.js"
+import artistRoutes from "./routes/artists.routes.js"
 import { errorMiddleware } from "./middlewares/errorMiddleware.js"
 
 const app = express()
@@ -22,6 +23,8 @@ app.use("/player", playerRoutes)
 app.use("/tracks", trackRoutes)
 
 app.use("/albums", albumRoutes)
+
+app.use("/artists", artistRoutes)
 
 app.use(errorMiddleware)
 

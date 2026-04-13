@@ -98,8 +98,6 @@ export const searchAlbums = async (req, res) => {
         throw new AppError ("Digite algo para buscar", 400)
     }
 
-    console.log(query)
-
     if (market) {
 
         params.market = String(market)
