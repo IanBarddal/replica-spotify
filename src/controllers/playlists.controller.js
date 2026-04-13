@@ -1,6 +1,6 @@
 import { playlistServices } from "../services/playlists.service.js"
 
-export const getCurrentUserPlaylists = async (req, res) => {
+export const getUsersPlaylists = async (req, res) => {
 
     try {
 

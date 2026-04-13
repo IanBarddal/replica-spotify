@@ -6,6 +6,6 @@ const router = Router()
 
 router.use(authMiddleware)
 
-router.get("/me/playlists", allPlaylistControllers.getCurrentUserPlaylists)
+router.get("/me/playlists", allPlaylistControllers.getUsersPlaylists)
 
 export default router
