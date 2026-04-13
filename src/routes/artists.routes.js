@@ -6,6 +6,7 @@ const router = Router()
 
 router.use(authMiddleware)
 
+router.get("/search", allArtistControllers.searchArtists)
 router.get("/:id/albums", allArtistControllers.getArtistAlbums)
 router.get("/:id", allArtistControllers.getArtistDetails)
 
