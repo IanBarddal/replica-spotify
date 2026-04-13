@@ -7,5 +7,6 @@ const router = Router()
 router.use(authMiddleware)
 
 router.get("/me/playlists", allPlaylistControllers.getUsersPlaylists)
+router.post("/me/playlists", allPlaylistControllers.createPlaylist)
 
 export default router

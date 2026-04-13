@@ -7,5 +7,8 @@ export const playlistServices = {
         return spotifyClient.get("/me/playlists", accessToken, params)
     },
 
-    
+    createPlaylist: (accessToken, params) => {
+
+        return spotifyClient.post("me/playlists", accessToken, params)
+    }
 }
