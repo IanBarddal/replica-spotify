@@ -12,7 +12,7 @@ export const playlistServices = {
         return spotifyClient.get("/me/playlists", accessToken, params)
     },
 
-    createPlaylist: (accessToken, params) => {
+    createPlaylist: (accessToken, params = {}) => {
 
         return spotifyClient.post("/me/playlists", accessToken, params)
     },
@@ -20,5 +20,10 @@ export const playlistServices = {
     changePlaylistDetails: (accessToken, id, data) => {
 
         return spotifyClient.put(`/playlists/${id}`, accessToken, data)
+    },
+
+    addTracks: (accessToken, id, data) => {
+
+        return spotifyClient.post(`/playlists/${id}/items`, accessToken, data)
     }
 }

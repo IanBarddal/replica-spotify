@@ -42,7 +42,8 @@ export const tracksSearch = async (req, res) => {
             album: track.album.name,
             name: track.name,
             artist: track.artists[0].name,
-            image: track.album.images[0].url
+            image: track.album.images[0].url,
+            uri: track.uri
         }))
 
         res.json(resultData)

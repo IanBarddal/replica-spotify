@@ -129,3 +129,38 @@ export const changePlaylistDetails = async (req, res) => {
         res.status(error.statusCode || 500).json({ error: error.message })
     }
 }
+
+export const addTracks = async (req, res) => {
+
+    const { id } = req.params
+
+    if (!id) {
+
+        throw new AppError ("ID da playlist é obrigatório", 400)
+    }
+
+    const { position, uris } = req.body
+
+    if (!uris || !Array.isArray(uris) || uris.length === 0) {
+    
+        throw new AppError("URIs são obrigatórias", 400)
+    }
+
+    const data = { uris }
+
+    if (position !== undefined) {
+
+        data.position = Number(position)
+    }
+
+    try {
+
+        await playlistServices.addTracks(req.accessToken, id, data)
+
+        res.status(201).json({ message: "Faixas adicionadas com sucesso à playlist!" })
+
+    } catch (error) {
+
+        res.status(error.statusCode || 500).json({ error: error.message })
+    }
+}

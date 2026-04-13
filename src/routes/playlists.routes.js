@@ -9,6 +9,7 @@ router.use(authMiddleware)
 router.get("/me/playlists", allPlaylistControllers.getUsersPlaylists)
 router.get("/:id", allPlaylistControllers.getPlaylist)
 router.post("/me/playlists", allPlaylistControllers.createPlaylist)
+router.post("/:id/items", allPlaylistControllers.addTracks)
 router.put("/:id", allPlaylistControllers.changePlaylistDetails)
 
 export default router
