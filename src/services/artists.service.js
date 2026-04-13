@@ -6,5 +6,10 @@ export const artistServices = {
     getArtistDetails: (accessToken, id) => {
 
         return spotifyClient.get(`artists/${id}`, accessToken)
+    },
+
+    getArtistAlbums: (accessToken, id, params = {}) => {
+
+        return spotifyClient.get(`artists/${id}/albums`, accessToken, params)
     }
 }

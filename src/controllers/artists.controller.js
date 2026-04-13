@@ -21,3 +21,48 @@ export const getArtistDetails = async (req, res) => {
         res.status(error.statusCode || 500).json({ error: error.message })
     }
 }
+
+export const getArtistAlbums = async (req, res) => {
+
+    const { id } = req.params
+
+    const { include_groups, market, limit, offset } = req.query
+
+    const params = {}
+
+    if (!id) {
+
+        throw new AppError ("ID do artista é obrigatório.", 400)
+    }
+
+    if (include_groups) {
+
+        params.include_groups = String(include_groups)
+    }
+
+    if (market) {
+
+        params.market = String(market)
+    }
+
+    if (limit) {
+
+        params.limit = Number(limit)
+    }
+
+    if (offset) {
+
+        params.offset = Number(offset)
+    }
+
+    try {
+
+        const result = await artistServices.getArtistAlbums(req.accessToken, id, params)
+
+        res.json(result)
+
+    } catch (error) {
+
+        res.status(error.statusCode || 500).json({ error: error.message })
+    }
+}
