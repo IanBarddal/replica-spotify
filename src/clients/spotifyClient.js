@@ -62,12 +62,13 @@ export const spotifyClient = {
         })
     },
 
-    delete: (url, accessToken) => {
+    delete: (url, accessToken, data) => {
 
         return spotifyClient.request({
             method: "DELETE",
             url,
-            accessToken
+            accessToken,
+            data
         })
     }
 }

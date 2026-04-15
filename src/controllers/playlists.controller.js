@@ -164,3 +164,38 @@ export const addTracks = async (req, res) => {
         res.status(error.statusCode || 500).json({ error: error.message })
     }
 }
+
+export const removeTracks = async (req, res) => {
+
+    const { id } = req.params
+
+    if (!id) {
+
+        throw new AppError ("ID da playlist é obrigatório.", 400)
+    }
+
+    const { items, snapshot_id } = req.body
+
+    if (!items || items.length === 0) {
+
+        throw new AppError ("É obrigatório informar os URIs das faixas a retirar da playlist.", 400)
+    }
+
+    const data = { items }
+
+    if (snapshot_id) {
+
+        data.snapshot_id = String(snapshot_id)
+    }
+
+    try {
+
+        await playlistServices.removeTracks(req.accessToken, id, data)
+
+        res.status(204).send()
+
+    } catch (error) {
+
+        res.status(error.statusCode || 500).json({ error: error.message })
+    }
+}

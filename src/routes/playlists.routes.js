@@ -11,5 +11,6 @@ router.get("/:id", allPlaylistControllers.getPlaylist)
 router.post("/me/playlists", allPlaylistControllers.createPlaylist)
 router.post("/:id/items", allPlaylistControllers.addTracks)
 router.put("/:id", allPlaylistControllers.changePlaylistDetails)
+router.delete("/:id/items", allPlaylistControllers.removeTracks)
 
 export default router

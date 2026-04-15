@@ -25,5 +25,10 @@ export const playlistServices = {
     addTracks: (accessToken, id, data) => {
 
         return spotifyClient.post(`/playlists/${id}/items`, accessToken, data)
+    },
+
+    removeTracks: (accessToken, id, data) => {
+
+        return spotifyClient.delete(`/playlists/${id}/items`, accessToken, data)
     }
 }
