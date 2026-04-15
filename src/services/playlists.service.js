@@ -30,5 +30,10 @@ export const playlistServices = {
     removeTracks: (accessToken, id, data) => {
 
         return spotifyClient.delete(`/playlists/${id}/items`, accessToken, data)
+    },
+
+    searchPlaylists: (accessToken, query, params = {}) => {
+
+        return spotifyClient.get("search", accessToken, {q: query, type: "playlist", ...params})
     }
 }

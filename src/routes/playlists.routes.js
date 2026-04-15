@@ -6,6 +6,7 @@ const router = Router()
 
 router.use(authMiddleware)
 
+router.get("/search", allPlaylistControllers.searchPlaylists)
 router.get("/me/playlists", allPlaylistControllers.getUsersPlaylists)
 router.get("/:id", allPlaylistControllers.getPlaylist)
 router.post("/me/playlists", allPlaylistControllers.createPlaylist)

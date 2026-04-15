@@ -7,7 +7,7 @@ const router = Router()
 router.use(authMiddleware)
 
 router.get("/me/tracks", allTracksControllers.getCurrentUserLikedTracks)
-router.get("/search", allTracksControllers.tracksSearch)
+router.get("/search", allTracksControllers.searchTracks)
 router.get("/:id", allTracksControllers.getTrackDetails)
 
 export default router

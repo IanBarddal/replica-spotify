@@ -2,7 +2,7 @@ import { spotifyClient } from "../clients/spotifyClient.js"
 
 export const tracksServices = {
 
-    tracksSearch: (accessToken, query, params = {}) => {
+    searchTracks: (accessToken, query, params = {}) => {
 
         return spotifyClient.get(`/search`, accessToken, {q: query, type: "track", ...params})
     },

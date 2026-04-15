@@ -199,3 +199,59 @@ export const removeTracks = async (req, res) => {
         res.status(error.statusCode || 500).json({ error: error.message })
     }
 }
+
+export const searchPlaylists = async (req, res) => {
+
+    const { q: query, market, limit, offset, include_external } = req.query
+
+    const params = {}
+
+    if (!query) {
+
+        throw new AppError ("Digite algo para buscar", 400)
+    }
+
+    if (market) {
+
+        params.market = String(market)
+    }
+
+    if (limit) {
+
+        params.limit = Number(limit)
+    }
+
+    if (offset) {
+
+        params.offset = Number(offset)
+    }
+
+    if (include_external) {
+
+        params.include_external = String(include_external)
+
+        if (!include_external.includes("audio")) {
+
+            throw new AppError ("O valor de 'include_external' deve ser 'audio'.", 400)
+        }
+    }
+
+    try {
+
+        const result = await playlistServices.searchPlaylists(req.accessToken, query, params)
+
+        res.json(result.playlists.items.map(i => ({
+            id: i.id,
+            name: i.name,
+            owner: i.owner.display_name,
+            images: i.images[0].url,
+            items: i.items.href,
+            uri: i.uri,
+            public: i.public
+        })))
+
+    } catch (error) {
+
+        res.status(error.statusCode || 500).json({ error: error.message })
+    }
+}

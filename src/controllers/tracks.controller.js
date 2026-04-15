@@ -1,7 +1,7 @@
 import { tracksServices } from "../services/tracks.service.js"
 import { AppError } from "../utils/appError.js"
 
-export const tracksSearch = async (req, res) => {
+export const searchTracks = async (req, res) => {
 
     const { q: query, limit, offset, market, includeExternal } = req.query
 
@@ -34,7 +34,7 @@ export const tracksSearch = async (req, res) => {
 
     try {
 
-        const result = await tracksServices.tracksSearch(req.accessToken, query, params)
+        const result = await tracksServices.searchTracks(req.accessToken, query, params)
 
         const resultData = result.tracks.items.map(track => ({
 
