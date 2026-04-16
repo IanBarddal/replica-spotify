@@ -138,17 +138,3 @@ export const getCurrentlyPlayingTrack = async (req, res) => {
         return res.status(error.statusCode || 500).json({ error: error.message })
     }
 }
-
-export const getPlayerDevices = async (req, res) => {
-
-    try {
-
-        const devices = await playerServices.getPlayerDevices(req.accessToken)
-
-        res.json(devices)
-
-    } catch (error) {
-
-        return res.status(error.statusCode || 500).json({ error: error.message })
-    }
-}

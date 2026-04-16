@@ -8,7 +8,6 @@ router.use(authMiddleware)
 
 router.get("/me/player", allPlayerControllers.getPlayerPlaybackState)
 router.get("/me/player/currently-playing", allPlayerControllers.getCurrentlyPlayingTrack)
-router.get("/me/player/devices", allPlayerControllers.getPlayerDevices)
 router.put("/me/player/play", allPlayerControllers.playerPlay)
 router.put("/me/player/pause", allPlayerControllers.playerPause)
 router.put("/me/player/volume", allPlayerControllers.playerSetVolume)
