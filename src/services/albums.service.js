@@ -9,7 +9,7 @@ export const albumServices = {
 
     getAlbumTracks: (accessToken, id, params = {}) => {
 
-        return spotifyClient.get(`albums/${id}/tracks`, accessToken, params)
+        return spotifyClient.get(`/albums/${id}/tracks`, accessToken, params)
     },
 
     getCurrentUserLikedAlbums: (accessToken, params = {}) => {

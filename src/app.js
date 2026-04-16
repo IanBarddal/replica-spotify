@@ -2,6 +2,7 @@ import express from "express"
 import healthRoute from "./routes/health.routes.js"
 import authRoutes from "./routes/auth.routes.js"
 import userRoutes from "./routes/user.routes.js"
+import searchRoutes from "./routes/search.routes.js"
 import playerRoutes from './routes/player.routes.js'
 import trackRoutes from "./routes/tracks.routes.js"
 import albumRoutes from "./routes/albums.routes.js"
@@ -18,6 +19,8 @@ app.use("/health", healthRoute)
 app.use("/auth", authRoutes)
 
 app.use("/user", userRoutes)
+
+app.use("/search", searchRoutes)
 
 app.use("/player", playerRoutes)
 

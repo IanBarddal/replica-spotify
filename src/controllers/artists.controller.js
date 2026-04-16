@@ -96,6 +96,11 @@ export const searchArtists = async (req, res) => {
     if (include_external) {
 
         params.include_external = String(include_external)
+
+        if (include_external !== "audio") {
+
+            throw new AppError ("O valor de 'include_external' deve ser 'audio'.", 400)
+        }
     }
 
     try {

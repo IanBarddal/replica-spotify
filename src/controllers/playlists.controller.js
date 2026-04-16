@@ -230,7 +230,7 @@ export const searchPlaylists = async (req, res) => {
 
         params.include_external = String(include_external)
 
-        if (!include_external.includes("audio")) {
+        if (include_external !== "audio") {
 
             throw new AppError ("O valor de 'include_external' deve ser 'audio'.", 400)
         }
@@ -244,8 +244,7 @@ export const searchPlaylists = async (req, res) => {
             id: i.id,
             name: i.name,
             owner: i.owner.display_name,
-            images: i.images[0].url,
-            items: i.items.href,
+            images: i.images[0]?.url,
             uri: i.uri,
             public: i.public
         })))

@@ -25,6 +25,11 @@ export const searchTracks = async (req, res) => {
     if (includeExternal) {
 
         params.includeExternal = String(includeExternal)
+
+        if (includeExternal !== "audio") {
+
+            throw new AppError ("O valor de 'include_external' deve ser 'audio'.", 400)
+        }
     }
 
     if (!query) {
