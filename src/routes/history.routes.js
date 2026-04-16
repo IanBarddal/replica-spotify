@@ -6,6 +6,8 @@ const router = Router()
 
 router.use(authMiddleware)
 
-router.get("/me/player/recently-played", allHistoryControllers.getCurrentUserRecentlyPlayedTracks)
+router.get("/recently-played", allHistoryControllers.getCurrentUserRecentlyPlayedTracks)
+router.get("/top/tracks", allHistoryControllers.getCurrentUserTopTracks)
+router.get("/top/artists", allHistoryControllers.getCurrentUserTopArtists)
 
 export default router

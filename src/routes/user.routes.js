@@ -7,8 +7,6 @@ const router = Router()
 router.use(authMiddleware)
 
 router.get("/me", allUserControllers.getCurrentUser)
-router.get("/me/top/tracks", allUserControllers.getCurrentUserTopTracks)
-router.get("/me/top/artists", allUserControllers.getCurrentUserTopArtists)
 router.get("/me/following", allUserControllers.getCurrentUserFollowedArtists)
 
 export default router
