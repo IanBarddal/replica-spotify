@@ -11,6 +11,7 @@ import playlistsRoutes from "./routes/playlists.routes.js"
 import historyRoutes from "./routes/history.routes.js"
 import devicesRoutes from "./routes/devices.routes.js"
 import recommendationsRoutes from "./routes/recommendations.routes.js"
+import favoritesRoutes from "./routes/favorites.routes.js"
 import { errorMiddleware } from "./middlewares/errorMiddleware.js"
 
 const app = express()
@@ -40,6 +41,8 @@ app.use("/history", historyRoutes)
 app.use("/devices", devicesRoutes)
 
 app.use("/recommendations", recommendationsRoutes)
+
+app.use("/favorites", favoritesRoutes)
 
 app.use(errorMiddleware)
 
