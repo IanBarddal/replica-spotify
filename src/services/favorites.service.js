@@ -2,10 +2,13 @@ import { spotifyClient } from "../clients/spotifyClient.js"
 
 export const favoritesServices = {
 
-    getCurrentUserFavoriteArtists: (accessToken, params = {}) => {
+    getCurrentUserFollowingArtists: (accessToken, params = {}) => {
 
         return spotifyClient.get("/me/following", accessToken, {...params, type: "artist"})
     },
 
+    getCurrentUserFavoriteAlbums: (accessToken, params = {}) => {
 
+        return spotifyClient.get("/me/albums", accessToken, params)
+    },
 }

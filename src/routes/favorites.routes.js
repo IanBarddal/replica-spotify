@@ -6,6 +6,7 @@ const router = Router()
 
 router.use(authMiddleware)
 
-router.get("/me/following", allFavoritesControllers.getCurrentUserFavoriteArtists)
+router.get("/me/following", allFavoritesControllers.getCurrentUserFollowingArtists)
+router.get("/me/albums", allFavoritesControllers.getCurrentUserFavoriteAlbums)
 
 export default router
