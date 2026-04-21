@@ -11,4 +11,9 @@ export const favoritesServices = {
 
         return spotifyClient.get("/me/albums", accessToken, params)
     },
+
+    getCurrentUserFavoriteTracks: (accessToken, params = {}) => {
+
+        return spotifyClient.get("/me/tracks", accessToken, params)
+    }
 }
