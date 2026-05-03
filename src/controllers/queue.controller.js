@@ -19,3 +19,27 @@ export const getQueue = async (req, res) => {
     }
 }
 
+export const addTrackToQueue = async (req, res) => {
+
+    const { uri } = req.query
+
+    if (!uri) {
+
+        throw new AppError ("URI é obrigatória", 400)
+    }
+
+    const { device_id } = req.body || {}
+
+    const data = uri
+
+    try {
+
+        await queueServices.addTrackToQueue(req.accessToken, data)
+
+        return res.status(201).json({ message: "Faixa adicionada com sucesso à fila" })
+
+    } catch (error) {
+
+        return res.status(error.statusCode || 500).json({ error: error.message })
+    }
+}

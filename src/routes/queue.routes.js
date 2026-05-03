@@ -7,5 +7,6 @@ const router = Router()
 router.use(authMiddleware)
 
 router.get("/", allQueueControllers.getQueue)
+router.post("/", allQueueControllers.addTrackToQueue)
 
 export default router

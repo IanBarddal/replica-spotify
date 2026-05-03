@@ -7,8 +7,8 @@ export const queueServices = {
         return spotifyClient.get("/me/player/queue", accessToken)
     },
 
-    addTrackToQueue: (accessToken, id, params = {}) => {
+    addTrackToQueue: (accessToken, data) => {
 
-        return spotifyClient.post("me/player/queue", accessToken, params)
+        return spotifyClient.post(`me/player/queue?uri=${data}`, accessToken, data)
     }
 }
