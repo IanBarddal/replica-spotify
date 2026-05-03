@@ -58,7 +58,13 @@ export const getCurrentUserTopTracks = async (req, res) => {
 
         const tracks = await historyServices.getCurrentUserTopTracks(req.accessToken, params)
 
-        res.json(tracks)
+        res.json(tracks.items.map(i => ({
+            id: i.id,
+            name: i.name,
+            artist: i.artists.map(a => a.name).join(", "),
+            album: i.album.name,
+            uri: i.uri
+        })))
 
     } catch (error) {
 

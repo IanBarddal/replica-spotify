@@ -6,7 +6,7 @@ export const getPlayerDevices = async (req, res) => {
 
         const devices = await devicesServices.getPlayerDevices(req.accessToken)
 
-        res.json(devices)
+        return res.json(devices)
 
     } catch (error) {
 

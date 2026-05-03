@@ -20,7 +20,7 @@ export const getCurrentUserFollowingArtists = async (req, res) => {
 
         const followingArtists = await favoritesServices.getCurrentUserFollowingArtists(req.accessToken, params)
 
-        res.json(followingArtists.artists.items.map(artist => ({
+        return res.json(followingArtists.artists.items.map(artist => ({
             id: artist.id,
             name: artist.name,
             uri: artist.uri,

@@ -12,6 +12,7 @@ import historyRoutes from "./routes/history.routes.js"
 import devicesRoutes from "./routes/devices.routes.js"
 import recommendationsRoutes from "./routes/recommendations.routes.js"
 import favoritesRoutes from "./routes/favorites.routes.js"
+import queueRoutes from "./routes/queue.routes.js"
 import { errorMiddleware } from "./middlewares/errorMiddleware.js"
 
 const app = express()
@@ -43,6 +44,8 @@ app.use("/devices", devicesRoutes)
 app.use("/recommendations", recommendationsRoutes)
 
 app.use("/favorites", favoritesRoutes)
+
+app.use("/queue", queueRoutes)
 
 app.use(errorMiddleware)
 
